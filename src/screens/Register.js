@@ -20,7 +20,7 @@ export default class FormRegister extends Component {
     }
 
     registrarUsuario(username, email, password, miniBio){
-        if (username.length == 0 && email.length == 0  && password.length == 0){
+        if (username.length == 0 && email.length == 0 && password.length == 0){
             this.setState({errors: {email:'ingrese email', username:'ingrese nombre', password: 'ingrese contraseña'}})
 
         }else if(username.length == 0 && email.length == 0 ) {
@@ -40,6 +40,7 @@ export default class FormRegister extends Component {
 
         } else if (username.length == 0){
             this.setState({errors: {email:'', username:'ingrese nombre', password:''}})
+
         } else {
             this.setState({errors:{email:'', username:'', password:''}})
             auth.createUserWithEmailAndPassword(email, password)
