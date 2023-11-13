@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, TouchableOpacity } from 'react-native'
+import { Text, View, TouchableOpacity, Image, StyleSheet } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons'
 import { auth, db } from '../firebase/config'
 import firebase from 'firebase'
@@ -10,7 +10,8 @@ export default class Post extends Component {
         super(props)
         this.state = {
             likes: 0,
-            likeado: false
+            likeado: false,
+            username:[]
         }
     }
 
@@ -39,10 +40,16 @@ export default class Post extends Component {
 
   render() {
     return (
-      <View>
+      <View style = {styles.container}>
+        <Text>{this.props.data.owner}</Text>
         <Text>{this.props.data.descripcion}</Text>
+        <Image
+            source={{uri:this.props.data.fotoUrl?this.props.data.fotoUrl:''}}
+            style = {styles.img}
+            resizeMode='contain'
+        />
         <View>
-            <Text>{this.props.data.likes}</Text>
+            <Text>{this.props.data.likes.length}</Text>
             { this.state.likeado ?
                 <TouchableOpacity onPress={()=> this.dislike()}>
                     <FontAwesome
@@ -65,3 +72,13 @@ export default class Post extends Component {
     )
   }
 }
+
+const styles = StyleSheet.create({
+    container:{
+        flex:1
+    },
+    img:{
+        width:'100%',
+        height:200
+    }
+})
