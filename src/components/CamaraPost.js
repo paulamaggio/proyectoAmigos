@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
         flex: 1
     },
     camara: {
-        height : 500,
+        height : 300,
         width: 700
     },
     img: {

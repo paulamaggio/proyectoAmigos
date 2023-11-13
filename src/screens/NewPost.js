@@ -43,7 +43,7 @@ actualizarFotoUrl(url){
 
   render() {
     return (
-      <View style = {styles.container}>
+      <View>
         <Text> NewPost </Text>
         {
           this.state.paso1? 
@@ -80,8 +80,5 @@ const styles = StyleSheet.create({
   },
   textBtn:{
       color: 'white'
-  },
-  container:{ 
-    flex:1
   }
 })

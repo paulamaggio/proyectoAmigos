@@ -15,7 +15,7 @@ export default class FormPost extends Component {
         <TextInput 
             style={styles.input}
             placeholder= 'Añade una descripcion a tu post'
-            value={this.state.descripcion}
+            value={this.state.estadoDescripcion}
             onChangeText={(text) => this.props.actualizarDescripcion(text)}/>
       </View>
     )

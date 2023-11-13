@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, FlatList } from 'react-native'
+import { Text, View, FlatList, StyleSheet } from 'react-native'
 import { auth, db } from '../firebase/config'
 
 import Post from '../components/Post'
@@ -29,7 +29,7 @@ export default class Home extends Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <Text> Home </Text>
         <FlatList
         data= {this.state.posts}
@@ -40,3 +40,9 @@ export default class Home extends Component {
     )
   }
 }
+
+const styles = StyleSheet.create({
+  container:{
+      flex:1
+  },
+})

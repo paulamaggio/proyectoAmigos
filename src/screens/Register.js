@@ -10,48 +10,21 @@ export default class FormRegister extends Component {
             email:'',
             password:'',
             miniBio:'',
-            fotoPerfil:'',
-            errors: {
-                username: '',
-                email: '',
-                password: ''
-            }
+            fotoPerfil:''
         }
     }
 
     registrarUsuario(username, email, password, miniBio){
-        if (username.length == 0 && email.length == 0 && password.length == 0){
-            this.setState({errors: {email:'ingrese email', username:'ingrese nombre', password: 'ingrese contraseña'}})
 
-        }else if(username.length == 0 && email.length == 0 ) {
-            this.setState({errors: {email:'ingrese email', username:'ingrese nombre', password:''}})
-
-        }else if (username.length == 0 && password.length == 0 ){
-            this.setState({errors: {email:'', username:'ingrese nombre', password:'ingrese contraseña'}})
-
-        } else if (email.length == 0 && password.length == 0 ){
-            this.setState({errors: {email:'ingrese email', username:'', password:'ingrese contraseña'}})
-
-        } else if (email.length == 0){
-            this.setState({errors: {email:'ingrese email', username:'', password:''}})
-
-        } else if (password.length == 0 ){
-            this.setState({errors: {email:'', username:'', password:'ingrese contraseña'}})
-
-        } else if (username.length == 0){
-            this.setState({errors: {email:'', username:'ingrese nombre', password:''}})
-
-        } else {
-            this.setState({errors:{email:'', username:'', password:''}})
-            auth.createUserWithEmailAndPassword(email, password)
-            .then(user => db.collection('users').add({
-                owner: email,
-                createdAt: Date.now(),
-                username: username,
-                miniBio: miniBio,
+        auth.createUserWithEmailAndPassword(email, password)
+        .then(user => db.collection('users').add({
+            owner: email,
+            createdAt: Date.now(),
+            username: username,
+            miniBio: miniBio,
             }))
-            .then((resp)=> console.log(resp))
-            .catch(err => console.log(err) )}
+        .then((resp)=> console.log(resp))
+        .catch(err => console.log(err) )
             
     }
 
@@ -69,10 +42,12 @@ export default class FormRegister extends Component {
         <Text> FORMULARIO </Text>
             
             {/* VALIDACIONES */}
-            
-            <Text>
-                {this.state.errors.username}
-            </Text>
+            {
+                this.state.username?
+                ''
+                :
+                <Text>Debe ingresar un nombre de usuario</Text> 
+            }
             <TextInput
                 style={styles.input}
                 placeholder='Ingresa tu nombre de usuario'
@@ -81,9 +56,12 @@ export default class FormRegister extends Component {
                 onChangeText={(text) => this.setState({username: text})}
             />
             
-            <Text>
-                {this.state.errors.email}
-            </Text>
+            {
+                this.state.email?
+                ''
+                :
+                <Text>Debe ingresar un email</Text> 
+            }
             <TextInput
                 style={styles.input}
                 placeholder='Ingresa tu email'
@@ -91,10 +69,13 @@ export default class FormRegister extends Component {
                 value={this.state.email}
                 onChangeText={(text) => this.setState({email: text})}
             />
-            
-            <Text>
-                {this.state.errors.password}
-            </Text>
+
+            {
+                this.state.password?
+                ''
+                :
+                <Text>Debe ingresar una contraseña</Text> 
+            }
             <TextInput
                 style={styles.input}
                 placeholder='Ingresa tu contraseña'
@@ -119,9 +100,14 @@ export default class FormRegister extends Component {
                 onChangeText={(text) => this.setState({fotoPerfil: text})}
             />
 
+            { this.state.username && this.state.email && this.state.password?
             <TouchableOpacity style={styles.btn} onPress={() => {this.registrarUsuario(this.state.username, this.state.email, this.state.password, this.state.miniBio)}}>
                 <Text style={styles.textBtn}>Registrarme </Text>
-            </TouchableOpacity>
+            </TouchableOpacity>    
+            :
+            <Text>Complete los campos de nombre de usuario, email y contraseña para registrarse.</Text>    
+            }
+
 
             <Text>Ya tienes una cuenta? <TouchableOpacity onPress={() => this.props.navigation.navigate('Login')}><Text style={styles.textLink}>Logueate aqui! </Text></TouchableOpacity></Text>
 
