@@ -3,6 +3,7 @@ import { Text, View, TouchableOpacity, Image, StyleSheet } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons'
 import { auth, db } from '../firebase/config'
 import firebase from 'firebase'
+import { styleProps } from 'react-native-web/dist/cjs/modules/forwardedProps'
 
 export default class Post extends Component {
 
@@ -38,6 +39,10 @@ export default class Post extends Component {
         .catch((err)=> (console.log(err)))
     }
 
+    irAComentar(){
+        this.props.navigation.navigate('Comments', {id: this.props.id})
+    }
+
   render() {
     return (
       <View style = {styles.container}>
@@ -68,6 +73,16 @@ export default class Post extends Component {
                 </TouchableOpacity>
             }
         </View>
+        <View style= {styles.comment}>
+            <TouchableOpacity
+            onPress={()=> this.irAComentar()}>
+                {this.props.data.comentarios?
+                <Text>Comentarios: {this.props.data.comentarios.length}</Text>
+                :
+                <Text>Comentarios: 0</Text>
+                }
+            </TouchableOpacity>
+        </View>
       </View>
     )
   }
@@ -78,7 +93,10 @@ const styles = StyleSheet.create({
         flex:1
     },
     img:{
-        width:'100%',
+        width:100,
         height:200
+    },
+    comment: {
+        marginBottom : 16
     }
 })

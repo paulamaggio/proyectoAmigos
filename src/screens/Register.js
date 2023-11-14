@@ -100,14 +100,26 @@ export default class FormRegister extends Component {
                 onChangeText={(text) => this.setState({fotoPerfil: text})}
             />
 
-            { this.state.username && this.state.email && this.state.password?
-            <TouchableOpacity style={styles.btn} onPress={() => {this.registrarUsuario(this.state.username, this.state.email, this.state.password, this.state.miniBio)}}>
+        {
+            this.state.username && this.state.email && this.state.password && this.state.email.includes('@') && this.state.email.includes('.com') && this.state.password.length >= 6 ? (
+                
+                <TouchableOpacity style={styles.btn} onPress={() => {this.registrarUsuario(this.state.username, this.state.email, this.state.password, this.state.miniBio)}}>
                 <Text style={styles.textBtn}>Registrarme </Text>
-            </TouchableOpacity>    
-            :
-            <Text>Complete los campos de nombre de usuario, email y contraseña para registrarse.</Text>    
-            }
+                </TouchableOpacity>
+            ) : (
+            this.state.email.includes('@') === false || this.state.email.includes('.com') === false ? (
+            
+                <Text>El email debe contener '@' y '.com'.</Text>
+            ) : 
+            this.state.password.length < 5 ? (
 
+                <Text>La contraseña debe tener mas de 5 caracteres.</Text>
+            ) 
+            : (
+                <Text>Complete los campos de nombre de usuario, email y contraseña para registrarse.</Text>
+            )
+            )
+        }
 
             <Text>Ya tienes una cuenta? <TouchableOpacity onPress={() => this.props.navigation.navigate('Login')}><Text style={styles.textLink}>Logueate aqui! </Text></TouchableOpacity></Text>
 
