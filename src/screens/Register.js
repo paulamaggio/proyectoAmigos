@@ -22,8 +22,9 @@ export default class FormRegister extends Component {
             createdAt: Date.now(),
             username: username,
             miniBio: miniBio,
+            fotoPerfil : ''
             }))
-        .then((resp)=> console.log(resp))
+        .then((resp)=> this.props.navigation.navigate('InfoAdicional', {docId:resp.id}))
         .catch(err => console.log(err) )
 
         this.setState({
@@ -33,7 +34,6 @@ export default class FormRegister extends Component {
             miniBio:'',
             fotoPerfil:''
         })
-            
     }
 
     componentDidMount(){
@@ -100,13 +100,6 @@ export default class FormRegister extends Component {
                 onChangeText={(text) => this.setState({miniBio: text})}
             />
 
-            <TextInput
-                style={styles.input}
-                placeholder='Agrega tu foto de perfil'
-                keyboardType='default'
-                value={this.state.fotoPerfil}
-                onChangeText={(text) => this.setState({fotoPerfil: text})}
-            />
 
         {
             this.state.username && this.state.email && this.state.password && this.state.email.includes('@') && this.state.email.includes('.com') && this.state.password.length >= 6 ? (

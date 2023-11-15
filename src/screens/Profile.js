@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, TouchableOpacity, StyleSheet, FlatList, ScrollView } from 'react-native'
+import { Text, View, TouchableOpacity, StyleSheet, FlatList, ScrollView, Image } from 'react-native'
 import { auth, db } from '../firebase/config'
 import Post from '../components/Post'
 
@@ -93,6 +93,10 @@ export default class Profile extends Component {
           <Text>{item.data.username}</Text>
           <Text>{item.data.owner}</Text>
           <Text>{item.data.miniBio}</Text>
+          <Image 
+              source={{uri:item.data.fotoPerfil}}
+              style = {styles.img}      
+          /> 
         </View>
         }
         /> 
@@ -136,4 +140,7 @@ const styles = StyleSheet.create({
     textBtn:{
         color: 'white'
     },
+    img:{
+      height:200
+  }
 })
