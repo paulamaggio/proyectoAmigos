@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { Text, View, TouchableOpacity, StyleSheet, FlatList } from 'react-native'
+import { Text, View, TouchableOpacity, StyleSheet, FlatList, ScrollView } from 'react-native'
 import { auth, db } from '../firebase/config'
+import Post from '../components/Post'
 
 
 export default class Profile extends Component {
@@ -8,8 +9,9 @@ export default class Profile extends Component {
     super(props)
     this.state = {
       cantidad : 0,
-      dataUsuario: null
-      
+      dataUsuario: null,
+      posteosUsuario : [],
+      idUsuario : ''
     }
   }
 
@@ -26,9 +28,13 @@ export default class Profile extends Component {
 
       let posteos = []
       docs.forEach((doc)=>{
-        posteos.push(doc.descripcion)
+        let posteo = {
+          id: doc.id,
+          data: doc.data()
+        }
+        posteos.push(posteo)
       })
-
+      this.setState({posteosUsuario : posteos})
       this.setState({cantidad: posteos.length})
     })
   }
@@ -38,9 +44,50 @@ export default class Profile extends Component {
       this.props.navigation.navigate('Login')
   }
 
+  borrarPosteo(idPost){
+    let validar = confirm('Esta seguro de que quiere borrar este post?')
+    {validar?
+    db
+    .collection('posts')
+    .doc(idPost)
+    .delete()
+    .then()
+    .catch((err)=> (console.log(err)))
+    :
+    ''
+    }
+    
+  }
+
+  eliminarCuenta(email){
+    db
+    .collection('users')
+    .where('owner', '==', email)
+    .onSnapshot((docs)=>{
+      let id = ''
+      docs.forEach((doc)=>{
+        id = doc.id
+      })
+      this.setState({idUsuario:id}, ()=>{
+        let validar = confirm('Esta seguro de que quiere eliminar su cuenta?')
+        if(validar){
+          db
+          .collection('users')
+          .doc(this.state.idUsuario)
+          .delete()
+          .then((resp)=>console.log(resp))
+          .catch((err)=>console.log(err))
+
+          this.props.navigation.navigate('Register')
+        }
+      })
+    })
+  }
+
   render() {
     return (
-      <View>
+      <ScrollView>
+      <View >
         <Text>Profile </Text>
          <FlatList
         data={this.state.dataUsuario}
@@ -54,11 +101,32 @@ export default class Profile extends Component {
         /> 
         <View>
             <Text>Cantidad de posteos: {this.state.cantidad}</Text>
-            <TouchableOpacity style={styles.btn} onPress={() => this.logOut()}>
-                <Text style={styles.textBtn}>Cerrar sesion</Text>
-            </TouchableOpacity>
+        </View>
+
+        <View>
+          <Text>Tus posteos:</Text>
+          <FlatList
+          data = {this.state.posteosUsuario}
+          keyExtractor= {(item) => item.id.toString()}
+          renderItem= {({item}) => 
+        <View>
+          <Post navigation={this.props.navigation} data={item.data} id={item.id} />
+          <TouchableOpacity onPress={()=>this.borrarPosteo(item.id)}>
+            <Text>Borrar post</Text>
+          </TouchableOpacity>
+        </View>}
+          /> 
+
+          <TouchableOpacity style={styles.btn} onPress={() => this.logOut()}>
+            <Text style={styles.textBtn}>Cerrar sesion</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={()=> this.eliminarCuenta(auth.currentUser.email)}>
+            <Text>Eliminar tu cuenta</Text>
+          </TouchableOpacity>
         </View>
       </View>
+      </ScrollView>
     )
   }
 }

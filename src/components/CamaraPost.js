@@ -108,7 +108,7 @@ export default class CamaraPost extends Component {
 
 const styles = StyleSheet.create({
     container:{ 
-        flex: 1
+        height: 300
     },
     camara: {
         height : 300,
