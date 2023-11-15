@@ -43,9 +43,17 @@ export default class FromLogin extends Component {
                     value={this.state.password}
                     onChangeText={(text) => this.setState({password: text})}
                 />
-          <TouchableOpacity style={styles.btn} onPress={() => this.loguearUsuario(this.state.email, this.state.password)}>
-                  <Text style={styles.textBtn}>Login </Text>
-          </TouchableOpacity>
+
+          {
+            this.state.email && this.state.password && this.state.email.includes('@') && this.state.email.includes('.com') && this.state.password.length >= 6 ? (
+                
+              <TouchableOpacity style={styles.btn} onPress={() => this.loguearUsuario(this.state.email, this.state.password)}>
+                <Text style={styles.textBtn}>Login </Text>
+              </TouchableOpacity>
+            ) : (
+                <Text>Complete los campos de email y contraseña para loguearse.</Text>
+            )
+        }
 
           <Text>Aun no tienes una cuenta? <TouchableOpacity onPress={() => this.props.navigation.navigate('Register')}><Text style={styles.textLink}>Registrate aqui!</Text></TouchableOpacity></Text>
 
