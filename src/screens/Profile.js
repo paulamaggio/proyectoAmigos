@@ -46,16 +46,13 @@ export default class Profile extends Component {
 
   borrarPosteo(idPost){
     let validar = confirm('Esta seguro de que quiere borrar este post?')
-    {validar?
+    if(validar){
     db
     .collection('posts')
     .doc(idPost)
     .delete()
     .then()
-    .catch((err)=> (console.log(err)))
-    :
-    ''
-    }
+    .catch((err)=> (console.log(err)))}
     
   }
 

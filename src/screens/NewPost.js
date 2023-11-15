@@ -26,6 +26,12 @@ export default class NewPost extends Component {
     })
     .then(() => {this.props.navigation.navigate('Home')})
     .catch(err => (console.log(err)))
+
+    this.setState({
+      descripcion: '',
+      urlFoto:'',
+      paso1: true
+    })
   }
 
   actualizarDescripcion(text){

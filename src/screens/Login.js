@@ -15,6 +15,11 @@ export default class FromLogin extends Component {
       auth.signInWithEmailAndPassword(email, password)
       .then((user) => {this.props.navigation.navigate('TabNavigation')})
       .catch(err => console.log(err) )
+
+      this.setState({
+        email:'',
+        password:''
+      })
     }
 
     componentDidMount(){

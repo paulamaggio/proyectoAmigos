@@ -25,6 +25,14 @@ export default class FormRegister extends Component {
             }))
         .then((resp)=> console.log(resp))
         .catch(err => console.log(err) )
+
+        this.setState({
+            username: '',
+            email:'',
+            password:'',
+            miniBio:'',
+            fotoPerfil:''
+        })
             
     }
 
