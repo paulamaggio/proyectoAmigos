@@ -100,7 +100,6 @@ export default class FormRegister extends Component {
                 onChangeText={(text) => this.setState({miniBio: text})}
             />
 
-
         {
             this.state.username && this.state.email && this.state.password && this.state.email.includes('@') && this.state.email.includes('.com') && this.state.password.length >= 6 ? (
                 

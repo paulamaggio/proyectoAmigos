@@ -46,7 +46,10 @@ export default class Post extends Component {
   render() {
     return (
       <View style = {styles.container}>
-        <Text>{this.props.data.owner}</Text>
+        <TouchableOpacity onPress={()=> this.props.navigation.navigate('PerfilAmigo', {email: this.props.data.owner})}>
+            <Text>{this.props.data.owner}</Text>
+        </TouchableOpacity>
+
         <Text>{this.props.data.descripcion}</Text>
         <Image
             source={{uri:this.props.data.fotoUrl?this.props.data.fotoUrl:''}}

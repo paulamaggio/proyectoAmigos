@@ -85,7 +85,7 @@ export default class Profile extends Component {
     return (
       <ScrollView>
       <View >
-        <Text>Profile </Text>
+        <Text>Mi perfil </Text>
          <FlatList
         data={this.state.dataUsuario}
         keyExtractor={(item)=> item.id.toString()}
@@ -93,19 +93,21 @@ export default class Profile extends Component {
           <Text>{item.data.username}</Text>
           <Text>{item.data.owner}</Text>
           <Text>{item.data.miniBio}</Text>
-          <Image 
+          {item.data.fotoPerfil?
+            <Image 
               source={{uri:item.data.fotoPerfil}}
               style = {styles.img}      
-          /> 
+            /> 
+          :
+          ''
+          }
+
         </View>
         }
         /> 
-        <View>
-            <Text>Cantidad de posteos: {this.state.cantidad}</Text>
-        </View>
 
         <View>
-          <Text>Tus posteos:</Text>
+          <Text>Tus posteos ({this.state.cantidad}) :</Text>
           <FlatList
           data = {this.state.posteosUsuario}
           keyExtractor= {(item) => item.id.toString()}

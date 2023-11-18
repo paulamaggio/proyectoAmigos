@@ -6,6 +6,7 @@ import Login from '../screens/Login'
 import TabNavigation from './TabNavigation'
 import Comments from '../screens/Comments';
 import InfoAdicional from '../screens/InfoAdicional';
+import PerfilAmigo from '../screens/PerfilAmigo';
 
 const Stack = createNativeStackNavigator();
 
@@ -18,6 +19,7 @@ export default function MainNavigation() {
           <Stack.Screen name='TabNavigation' component={TabNavigation} options={{headerShown: false}}/>
           <Stack.Screen name='Comments' component={Comments} /> 
           <Stack.Screen name='InfoAdicional' component={InfoAdicional} options={{headerShown:false}}/>
+          <Stack.Screen name='PerfilAmigo' component={PerfilAmigo} /> 
         </Stack.Navigator>
       </NavigationContainer>
     );
