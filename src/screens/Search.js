@@ -56,6 +56,7 @@ export default class Search extends Component {
       <View>
         <ScrollView>
         <FormSearch style={styles.form} filterUsuarios={(value) => this.filterUsuarios(value)} actualizarInput={(value) => this.actualizarInput(value)}/>
+        <View style={styles.usuarios}>
         {
           this.state.value != ''? (
             this.state.usuarios.length != 0?
@@ -63,20 +64,21 @@ export default class Search extends Component {
               data={this.state.usuarios}
               keyExtractor={(item)=> item.id.toString()}
               renderItem={({item})=>
-                <View style={StyleSheet.busqueda}>
+                <View>
                   <TouchableOpacity onPress={() => this.irPerfil(item.data.owner)}>
-                    <Text> {item.data.name}</Text>
+                    <Text>{item.data.name}</Text>
                     <Text>{item.data.owner}</Text>
                   </TouchableOpacity>
                 </View>
                 }
               />
               :
-              <Text>El usuario buscado no existe.</Text>
+              <Text style={styles.text}>El usuario buscado no existe.</Text>
           ) : (
             <Text style={styles.text}>Busca un usuario</Text>
           )
         }
+        </View>
       </ScrollView>
       </View>
     )
@@ -85,16 +87,14 @@ export default class Search extends Component {
 
 const styles = StyleSheet.create({
   text: {
-    alignItems: 'center',
+    alignSelf: 'center',
     justifyContent: 'center',
-    marginLeft: 550,
-    fontWeight:'bold',
-
-
-},
- form: {
-   margintop: '100%'
-}
-}
-)
-
+  },
+  form: {
+   margintop: 10,
+   marginBottom:30
+  },
+  usuarios:{
+    alignItems: 'center',
+  }
+})

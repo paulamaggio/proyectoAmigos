@@ -32,7 +32,7 @@ export default class FromLogin extends Component {
 
     render() {
       return (
-        <View>
+        <View style={styles.container}>
           <Text style={styles.text}> Login </Text>
             <TextInput
                     style={styles.input}
@@ -53,7 +53,7 @@ export default class FromLogin extends Component {
             this.state.email && this.state.password && this.state.email.includes('@') && this.state.email.includes('.com') && this.state.password.length >= 6 ? (
                 
               <TouchableOpacity style={styles.btn} onPress={() => this.loguearUsuario(this.state.email, this.state.password)}>
-                <Text style={styles.textBtn}>Login </Text>
+                <Text style={styles.textBtn}>Login</Text>
               </TouchableOpacity>
             ) : (
                 <Text>Complete los campos de email y contraseña para loguearse.</Text>
@@ -68,22 +68,31 @@ export default class FromLogin extends Component {
 }
 
 const styles = StyleSheet.create({
+    container:{
+      flex:1,
+      alignItems:'center',
+    },
     input: {
         borderWidth: 3,
-        borderColor: 'green',
+        borderColor: 'pink',
         marginBottom: 20
     },
     btn:{ 
-        backgroundColor: 'green',
-        padding: 16
+        backgroundColor: 'pink',
+        padding: 16,
+        marginBottom:15
     },
     textBtn:{
-        color: 'white'
+        color: 'black'
     },
     textLink:{
         color:'blue'
     },
     text: {
       fontWeight:'bold',
+      marginBottom:20,
+      marginTop:20,
+      fontSize:20,
+      alignSelf:'center'
     }
 })

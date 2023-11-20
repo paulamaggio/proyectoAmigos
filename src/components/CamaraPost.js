@@ -67,7 +67,7 @@ export default class CamaraPost extends Component {
                 <TouchableOpacity onPress={()=>this.tomarFoto()}>
                     <FontAwesome
                      name = 'camera'
-                     size = {22}
+                     size = {35}
                     />
                 </TouchableOpacity>
             </>
@@ -79,27 +79,29 @@ export default class CamaraPost extends Component {
                     source={{uri: this.state.urlTemp}}
                     resizeMode={'contain'}
                 />
-                <TouchableOpacity
+                <TouchableOpacity style={styles.iconos}
                 onPress={()=>this.aceptarFoto()}
                 >
+                    <Text>Aceptar foto</Text>
                   <FontAwesome
                      name = 'check'
-                     size = {22}
+                     size = {30}
                     />
                 </TouchableOpacity>
 
 
-                <TouchableOpacity 
+                <TouchableOpacity style={styles.iconos}
                 onPress={()=>this.rechazarFoto()}
                 >
+                    <Text>Tomar otra foto</Text>
                    <FontAwesome
                      name = 'ban'
-                     size = {22}
+                     size = {30}
                     />
                 </TouchableOpacity>
             </>
             :
-            <Text>Camara</Text>
+            ''
             }
       
         </View>
@@ -114,7 +116,10 @@ const styles = StyleSheet.create({
     },
     camara: {
         height : 300,
-        width: 700
+        width: 700,
+        marginBottom:30,
     },
-    
+    iconos:{
+        alignItems:'center'
+    }
 })

@@ -42,42 +42,38 @@ export default class PerfilAmigo extends Component {
   render() {
     return (
         <ScrollView>
-        <View>
-            <Text> Perfil </Text>
-            <FlatList 
+        <View style={styles.container}>
+            <FlatList style={styles.userContainer}
             data = {this.state.dataUsuario}
             keyExtractor={(item)=> item.id.toString()}
             renderItem={({item}) => <View>
-            <Text>{item.data.username}</Text>
-            <Text>{item.data.owner}</Text>
-            <Text>{item.data.miniBio}</Text>
+              <Text style={styles.texts}><strong>Usuario: {item.data.username}</strong></Text>
+              <Text style={styles.texts}>Email: {item.data.owner}</Text>
+              <Text style={styles.texts}>{item.data.miniBio}</Text>
             {item.data.fotoPerfil?
             <Image 
               source={{uri:item.data.fotoPerfil}}
-              style = {styles.img}      
+              style = {styles.img}
+              resizeMode={'contain'}
             /> 
             :
             ''
             }
-          </View>
+        </View>
           }
          />
+        
         <View>
-            
-        <Text>Sus posteos ({this.state.cantidad}):</Text>
+        <Text style={styles.texts}>Sus posteos ({this.state.cantidad}):</Text>
 
           <FlatList
           data = {this.state.posteosUsuario}
           keyExtractor= {(item) => item.id.toString()}
           renderItem= {({item}) => 
-        <View>
-          <Post navigation={this.props.navigation} data={item.data} id={item.id} />
-          <TouchableOpacity onPress={()=>this.borrarPosteo(item.id)}>
-            <Text>Borrar post</Text>
-          </TouchableOpacity>
-        </View>}
+            <View style={styles.postContainer}>
+              <Post navigation={this.props.navigation} data={item.data} id={item.id} />
+            </View>}
           /> 
-
         </View>
 
         </View>
@@ -87,14 +83,39 @@ export default class PerfilAmigo extends Component {
 }
 
 const styles = StyleSheet.create({
-    btn:{ 
-        backgroundColor: 'purple',
-        padding: 16
-    },
-    textBtn:{
-        color: 'white'
-    },
-    img:{
-      height:200
+  container:{
+    flex: 1,
+    backgroundColor: '#F5F5F5', 
+    paddingHorizontal: 16,
+    paddingTop: 16,
+  },
+  userContainer:{
+    marginBottom: 16,
+    backgroundColor: '#FFFFFF', 
+    borderRadius: 8, 
+    padding: 16,
+    elevation: 2, 
+  },
+  postContainer:{
+    marginBottom: 16,
+    backgroundColor: '#FFFFFF', 
+    borderRadius: 8, 
+    padding: 16,
+    elevation: 2, 
+  },
+  email:{
+    fontWeight:'bold',
+    alignSelf:'center',
+    fontSize: 20,
+    marginBottom: 30
+
+  },
+  texts:{
+    marginBottom:10,
+    alignSelf:'center'
+  },
+  img:{
+    width:'100%',
+    height:200,
   }
 })

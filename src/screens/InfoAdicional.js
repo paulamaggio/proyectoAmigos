@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View } from 'react-native'
+import { Text, View, StyleSheet } from 'react-native'
 import { TouchableOpacity } from 'react-native-web'
 import MyImagePicker from '../components/MyImagePicker'
 import {db} from '../firebase/config'
@@ -31,23 +31,56 @@ export default class InfoAdicional extends Component {
   render() {
     return (
     <View>
-        <Text> Agregar foto de perfil</Text>
+        <Text style={styles.titulo}> Agregar foto de perfil</Text>
         <MyImagePicker 
             actEstFoto = {(url)=> this.actEstFoto(url)}
         />
          {this.state.fotoDePerfil !== '' ? (
-          <TouchableOpacity onPress={() => this.actDocUsuario()}>
-            <Text>Añadir foto de Perfil</Text>
+          <TouchableOpacity style={styles.btn}
+          onPress={() => this.actDocUsuario()}>
+            <Text style={styles.textBtn}>Añadir foto de Perfil</Text>
           </TouchableOpacity>) 
         : 
         (<></>)
         }
 
         <TouchableOpacity onPress={() => this.props.navigation.navigate('Home')}>
-          <Text>Omitir este paso</Text>
+          <Text style={styles.texts}>Omitir este paso</Text>
         </TouchableOpacity>
 
     </View>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  titulo:{
+    fontSize: 30,
+    color: 'black',
+    fontWeight:'bold',
+    alignSelf: 'center',
+    justifyContent: 'center',
+    marginTop:30,
+    marginBottom:30
+  },
+  texts:{
+      marginBottom:15,
+      alignSelf:'center',
+      marginTop:15
+  },
+  iconos:{
+      alignItems:'center'
+  },
+  btn:{ 
+    backgroundColor: 'pink',
+    padding: 16,
+    justifyContent: 'center',
+    alignSelf: 'center',
+    width: '60%',
+    marginTop:20,
+    marginBottom:10
+  },
+  textBtn:{
+    alignSelf:'center'
+  }
+})

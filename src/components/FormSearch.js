@@ -14,7 +14,7 @@ export default class FormSearch extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.text} > Buscador </Text>
+        <Text style={styles.text}> Buscador </Text>
         <TextInput
         placeholder="Búsqueda"
         name="busqueda"
@@ -29,26 +29,25 @@ export default class FormSearch extends Component {
 const styles = StyleSheet.create({
   input: {
       borderWidth: 3,
-      borderColor: 'green',
+      borderColor: 'pink',
       marginBottom: 20,
       width: "60%",
       justifyContent: 'center',
       alignItems: 'center',
       marginTop: 100,
   },
-
   container: {
     justifyContent: 'center',
       alignItems: 'center',
       flex: 1
   },
   text: {
-  fontSize: '150%',
-  color: 'green',
-  fontWeight:'bold',
-  alignItems: 'center',
-  justifyContent: 'center',
-
+    fontSize: 30,
+    color: 'black',
+    fontWeight:'bold',
+    alignSelf: 'center',
+    justifyContent: 'center',
+    marginTop:30
   }
 })
 

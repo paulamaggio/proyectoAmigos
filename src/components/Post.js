@@ -55,10 +55,10 @@ export default class Post extends Component {
     return (
       <View style = {styles.container}>
         <TouchableOpacity onPress={()=> this.irPerfil(this.props.data.owner)}>
-            <Text>{this.props.data.owner}</Text>
+            <Text style = {styles.owner}><strong>{this.props.data.owner}</strong></Text>
         </TouchableOpacity>
 
-        <Text>{this.props.data.descripcion}</Text>
+        <Text style = {styles.owner}>{this.props.data.descripcion}</Text>
         <Image
             source={{uri:this.props.data.fotoUrl?this.props.data.fotoUrl:''}}
             style = {styles.img}
@@ -70,7 +70,7 @@ export default class Post extends Component {
                 <TouchableOpacity onPress={()=> this.dislike()}>
                     <FontAwesome
                         name='heart'
-                        color='red'
+                        color='#ff1493'
                         size={22}
                     />
                 </TouchableOpacity>
@@ -78,7 +78,7 @@ export default class Post extends Component {
                 <TouchableOpacity onPress={()=> this.like()}>
                     <FontAwesome
                         name='heart-o'
-                        color='red'
+                        color='#ff1493'
                         size={22}
                     />
                 </TouchableOpacity>
@@ -106,12 +106,15 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     img:{
-        width:100,
-        height:200
+        width:'100%',
+        height:200,
     },
     comment: {
-        marginBottom : 16
-        
+        marginBottom : 30,
+        marginTop: 3
+    },
+    owner:{
+        marginBottom: 5,
     }
 })
 

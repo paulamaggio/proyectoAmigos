@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, FlatList} from 'react-native'
+import { Text, View, FlatList, StyleSheet} from 'react-native'
 import FormComentarios from '../components/FormComentarios'
 import {db} from '../firebase/config'
 
@@ -27,16 +27,16 @@ export default class Comments extends Component {
       <View>
         {
             this.state.dataPost !== null && this.state.dataPost.comentarios ? (
-            <FlatList
+            <FlatList style={styles.comment}
             data = {this.state.dataPost.comentarios}
             keyExtractor ={(item)=>item.createdAt.toString()}
             renderItem ={({item})=> <View>
-                <Text> {item.owner} </Text>
-                <Text> {item.comentario} </Text>
+                <Text style={styles.owner}><strong>{item.owner}</strong></Text>
+                <Text style={styles.comment}> {item.comentario} </Text>
             </View>}
             /> 
             ) : (
-            <Text>Aun no hay comentarios</Text>
+            <Text style={styles.alert}>Aun no hay comentarios</Text>
             )
         }
 
@@ -47,3 +47,21 @@ export default class Comments extends Component {
     )
   }
 }
+
+const styles = StyleSheet.create({
+  alert: {
+    marginBottom : 30,
+    marginTop: 10,
+    alignSelf:'center'
+  },
+  owner:{
+  marginBottom: 2,
+  marginTop: 10,
+  alignSelf:'center'
+  },
+  comment:{
+    marginBottom: 3,
+    marginTop: 2,
+    alignSelf:'center'
+  }
+})

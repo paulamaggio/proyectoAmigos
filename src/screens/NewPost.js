@@ -50,7 +50,7 @@ actualizarFotoUrl(url){
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.textPost}> Publica una foto </Text>
+        <Text style={styles.textPost}><strong>Tomate una foto</strong></Text>
         {
           this.state.paso1? 
           <CamaraPost 
@@ -59,7 +59,6 @@ actualizarFotoUrl(url){
           :
           <>
           <FormPost 
-          //onSubmit={ (obj) => this.onSubmit(obj)} 
           actualizarDescripcion={(descripcion)=> this.actualizarDescripcion(descripcion)}
           estadoDescripcion= {this.state.descripcion}
           />
@@ -77,7 +76,7 @@ actualizarFotoUrl(url){
 const styles = StyleSheet.create({
 
   btn:{ 
-      backgroundColor: 'green',
+      backgroundColor: 'pink',
       padding: 16,
       justifyContent: 'center',
       alignItems: 'center',
@@ -87,16 +86,18 @@ const styles = StyleSheet.create({
       color: 'black',
       justifyContent: 'center',
       alignItems: 'center',
-
   },
   textPost: {
     alignItems: 'center',
     fontWeight:'bold',
     justifyContent: 'center',
-    color: "green"
+    color: "#ff1493",
+    marginTop:30,
+    marginBottom:30,
+    fontSize: 20
   },
   container: {
     justifyContent: 'center',
-      alignItems: 'center',
+    alignItems: 'center',
   }
 })

@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { Text, View, TouchableOpacity, Image, StyleSheet } from 'react-native'
 import * as ImagePicker from 'expo-image-picker'
 import {storage} from '../firebase/config' 
+import { FontAwesome } from '@expo/vector-icons'
+
 
 export default class MyImagePicker extends Component {
     constructor(props){
@@ -47,15 +49,24 @@ export default class MyImagePicker extends Component {
                 <Image 
                 source={{uri:this.state.imagenCargada}}
                 style = {styles.img}
+                resizeMode='contain'
                 /> 
-                <TouchableOpacity
+                <TouchableOpacity style={styles.iconos}
                 onPress={()=>this.aceptarImg()}>
-                    <Text>Aceptar imagen</Text>
+                    <Text>Aceptar foto</Text>
+                  <FontAwesome
+                     name = 'check'
+                     size = {30}
+                    />
                 </TouchableOpacity>
 
-                <TouchableOpacity
+                <TouchableOpacity style={styles.iconos}
                 onPress={()=>this.rechazarImg()}>
-                    <Text>Rechazar imagen</Text>
+                    <Text>Seleccionar otra foto</Text>
+                   <FontAwesome
+                     name = 'ban'
+                     size = {30}
+                    />
                 </TouchableOpacity>
 
             </>
@@ -63,7 +74,7 @@ export default class MyImagePicker extends Component {
             <>
                 <TouchableOpacity
                 onPress={()=>this.activarPicker()}>
-                    <Text>Cargar imagen de mi galeria</Text>
+                    <Text style={styles.texts}>Cargar imagen de mi galeria</Text>
                 </TouchableOpacity>
             </>
         }
@@ -74,6 +85,15 @@ export default class MyImagePicker extends Component {
 
 const styles = StyleSheet.create({
     img:{
-        height:200
+        height:200,
+    },
+    texts:{
+        marginBottom:10,
+        alignSelf:'center'
+    },
+    iconos:{
+        alignItems:'center',
+        marginBottom:15,
+        marginTop:15
     }
 })

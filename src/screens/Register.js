@@ -46,8 +46,8 @@ export default class FormRegister extends Component {
 
   render(){
     return (
-      <View>
-        <Text style={styles.text}> Formulario de Registracion </Text>
+      <View style={styles.container}>
+        <Text style={styles.text}>Register</Text>
             
             {/* VALIDACIONES */}
             {
@@ -109,7 +109,7 @@ export default class FormRegister extends Component {
             ) : (
             this.state.email.includes('@') === false || this.state.email.includes('.com') === false ? (
             
-                <Text>El email debe contener '@' y '.com'.</Text>
+                <Text style={styles.validaciones}>El email debe contener '@' y '.com'.</Text>
             ) : 
             this.state.password.length < 5 ? (
 
@@ -129,22 +129,35 @@ export default class FormRegister extends Component {
 }
 
 const styles = StyleSheet.create({
+    container:{
+        flex:1,
+        alignItems:'center',
+    },
     input: {
         borderWidth: 3,
-        borderColor: 'green',
-        marginBottom: 20
+        borderColor: 'pink',
+        marginBottom:30,
+        marginTop:10,
     },
     btn:{ 
-        backgroundColor: 'green',
+        backgroundColor: 'pink',
         padding: 16
     },
     textBtn:{
-        color: 'white'
+        color: 'black'
     },
     textLink:{
         color:'blue'
     },
     text: {
         fontWeight:'bold',
-      }
+        marginBottom:20,
+        marginTop:20,
+        fontSize:20,
+        alignSelf:'center'
+    },
+    validaciones:{
+        marginBottom:10,
+        marginTop:10,
+    }
 })

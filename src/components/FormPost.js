@@ -25,18 +25,17 @@ export default class FormPost extends Component {
 const styles = StyleSheet.create({
     input: {
         borderWidth: 3,
-        borderColor: 'green',
+        borderColor: 'pink',
         marginBottom: 20,
         width: "600%",
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: 50,
     },
-
     container: {
       justifyContent: 'center',
-        alignItems: 'center',
-        flex: 1
+      alignItems: 'center',
+      flex: 1
     }
 })
 

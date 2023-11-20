@@ -42,25 +42,22 @@ export default class Home extends Component {
   }
 }
 
-// const styles = StyleSheet.create({
- //  container:{
-   //    flex:1
- //  },
-// })
-
 const styles = StyleSheet.create({
   container: {
     flex:1, 
     backgroundColor: '#DCDCDC',
     paddingHorizontal: 16,
     paddingTop: 16,
-
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   flatList: {
     marginTop: 16,
   },
   text: {
     fontWeight:'bold',
-    fontSize: '200%'
+    fontSize: '200%',
+    marginTop: 20,
+    marginBottom:30
   }
 })

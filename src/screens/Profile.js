@@ -95,13 +95,15 @@ export default class Profile extends Component {
         data={this.state.dataUsuario}
         keyExtractor={(item)=> item.id.toString()}
         renderItem={({item}) => <View>
-          <Text>{item.data.username}</Text>
-          <Text>{item.data.owner}</Text>
-          <Text>{item.data.miniBio}</Text>
+          <Text style={styles.texts}><strong>Usuario: {item.data.username}</strong></Text>
+          <Text style={styles.texts}>Email: {item.data.owner}</Text>
+          <Text style={styles.texts}>{item.data.miniBio}</Text>
+
           {item.data.fotoPerfil?
-            <Image 
+            <Image
               source={{uri:item.data.fotoPerfil}}
-              style = {styles.img}      
+              style = {styles.img}
+              resizeMode={'contain'}
             /> 
           :
           ''
@@ -112,7 +114,7 @@ export default class Profile extends Component {
         /> 
 
         <View>
-          <Text>Tus posteos ({this.state.cantidad}) :</Text>
+          <Text style={styles.texts}>Tus posteos ({this.state.cantidad}) :</Text>
           <FlatList
           data = {this.state.posteosUsuario}
           keyExtractor= {(item) => item.id.toString()}
@@ -120,17 +122,17 @@ export default class Profile extends Component {
         <View style={styles.postContainer}>
           <Post navigation={this.props.navigation} data={item.data} id={item.id} />
           <TouchableOpacity style={styles.btnEliminar} onPress={()=>this.borrarPosteo(item.id)}>
-            <Text>Borrar post</Text>
+            <Text style={styles.textsBtn}>Borrar post</Text>
           </TouchableOpacity>
         </View>}
           /> 
 
           <TouchableOpacity style= {styles.btn} onPress={() => this.logOut()}>
-            <Text style={styles.textBtn}>Cerrar sesion</Text>
+            <Text style={styles.textsBtn}>Cerrar sesion</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.btn} onPress={()=> this.eliminarCuenta(auth.currentUser.email)}>
-            <Text>Eliminar tu cuenta</Text>
+            <Text style={styles.textsBtn}>Eliminar tu cuenta</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -138,20 +140,6 @@ export default class Profile extends Component {
     )
   }
 }
-
-
-//const styles = StyleSheet.create({
-   // btn:{ 
-    //    backgroundColor: 'green',
-    //    padding: 16
-   // },
-   // textBtn:{
-   //     color: 'white'
-   // },
-   // img:{
-   //   height:200
- // }
-// }
 
 const styles = StyleSheet.create({
   container:{
@@ -166,7 +154,6 @@ const styles = StyleSheet.create({
     borderRadius: 8, 
     padding: 16,
     elevation: 2, 
-    
   },
   postContainer:{
     marginBottom: 16,
@@ -175,30 +162,40 @@ const styles = StyleSheet.create({
     padding: 16,
     elevation: 2, 
   },
-
   btn:{
-    backgroundColor:'green',
+    backgroundColor:'pink',
     padding: 10,
     borderRadius:6,
     marginTop:20,
-    alignItems: 'center',
-    justifyContent: 'center'
-    
+    alignSelf: 'center',
+    justifyContent: 'center',
+    width:'20%'
   },
-  
   btnEliminar:{
-    backgroundColor:'green',
+    backgroundColor:'pink',
     padding: 10,
     borderRadius:6,
     marginBottom: 10,
-    alignItems: 'center',
-    justifyContent: 'center'
-    
+    alignSelf: 'center',
+    justifyContent: 'center',
+    width:'20%'
   },
+  email:{
+    fontWeight:'bold',
+    alignSelf:'center',
+    fontSize: 20,
+    marginBottom: 30
 
-email:{
-  fontWeight:'bold',
-  paddingBottom: '50'
-
-}
+  },
+  texts:{
+    marginBottom:10,
+    alignSelf:'center'
+  },
+  textsBtn:{
+    alignSelf:'center'
+  },
+  img:{
+    width:'100%',
+    height:200,
+  }
 })

@@ -40,9 +40,9 @@ export default class FormComentarios extends Component {
         />
 
         {this.state.comentario? 
-          <TouchableOpacity
+          <TouchableOpacity style={styles.btn}
             onPress={()=> this.enviarComentario(this.state.comentario)}>
-                <Text>Enviar comentario</Text>
+                <Text style={styles.textBtn}>Enviar comentario</Text>
           </TouchableOpacity>
         :
         ''
@@ -55,17 +55,21 @@ export default class FormComentarios extends Component {
 const styles = StyleSheet.create({
     input: {
         borderWidth: 3,
-        borderColor: 'purple',
-        marginBottom: 20
+        borderColor: 'pink',
+        width: '80%',
+        alignSelf: 'center'
     },
     btn:{ 
-        backgroundColor: 'purple',
-        padding: 16
+      backgroundColor: 'pink',
+      padding: 16,
+      justifyContent: 'center',
+      alignSelf: 'center',
+      width: '60%',
+      marginTop:20
     },
     textBtn:{
-        color: 'white'
+      color: 'black',
+      justifyContent: 'center',
+      alignSelf: 'center',
     },
-    textLink:{
-        color:'blue'
-    }
 })
