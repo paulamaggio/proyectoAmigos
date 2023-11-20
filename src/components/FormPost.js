@@ -11,7 +11,7 @@ export default class FormPost extends Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <TextInput 
             style={styles.input}
             placeholder= 'Añade una descripcion a tu post'
@@ -25,14 +25,18 @@ export default class FormPost extends Component {
 const styles = StyleSheet.create({
     input: {
         borderWidth: 3,
-        borderColor: 'purple',
-        marginBottom: 20
+        borderColor: 'green',
+        marginBottom: 20,
+        width: "600%",
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 50,
     },
-    btn:{ 
-        backgroundColor: 'purple',
-        padding: 16
-    },
-    textBtn:{
-        color: 'white'
-    },
+
+    container: {
+      justifyContent: 'center',
+        alignItems: 'center',
+        flex: 1
+    }
 })
+

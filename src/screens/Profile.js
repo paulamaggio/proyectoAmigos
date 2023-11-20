@@ -89,9 +89,9 @@ export default class Profile extends Component {
   render() {
     return (
       <ScrollView>
-      <View >
-        <Text>Mi perfil </Text>
-         <FlatList
+      <View style={styles.container} >
+        <Text style={styles.email}>Mi perfil </Text>
+         <FlatList style={styles.userContainer}
         data={this.state.dataUsuario}
         keyExtractor={(item)=> item.id.toString()}
         renderItem={({item}) => <View>
@@ -117,19 +117,19 @@ export default class Profile extends Component {
           data = {this.state.posteosUsuario}
           keyExtractor= {(item) => item.id.toString()}
           renderItem= {({item}) => 
-        <View>
+        <View style={styles.postContainer}>
           <Post navigation={this.props.navigation} data={item.data} id={item.id} />
-          <TouchableOpacity onPress={()=>this.borrarPosteo(item.id)}>
+          <TouchableOpacity style={styles.btnEliminar} onPress={()=>this.borrarPosteo(item.id)}>
             <Text>Borrar post</Text>
           </TouchableOpacity>
         </View>}
           /> 
 
-          <TouchableOpacity style={styles.btn} onPress={() => this.logOut()}>
+          <TouchableOpacity style= {styles.btn} onPress={() => this.logOut()}>
             <Text style={styles.textBtn}>Cerrar sesion</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={()=> this.eliminarCuenta(auth.currentUser.email)}>
+          <TouchableOpacity style={styles.btn} onPress={()=> this.eliminarCuenta(auth.currentUser.email)}>
             <Text>Eliminar tu cuenta</Text>
           </TouchableOpacity>
         </View>
@@ -139,15 +139,66 @@ export default class Profile extends Component {
   }
 }
 
+
+//const styles = StyleSheet.create({
+   // btn:{ 
+    //    backgroundColor: 'green',
+    //    padding: 16
+   // },
+   // textBtn:{
+   //     color: 'white'
+   // },
+   // img:{
+   //   height:200
+ // }
+// }
+
 const styles = StyleSheet.create({
-    btn:{ 
-        backgroundColor: 'purple',
-        padding: 16
-    },
-    textBtn:{
-        color: 'white'
-    },
-    img:{
-      height:200
-  }
+  container:{
+    flex: 1,
+    backgroundColor: '#F5F5F5', 
+    paddingHorizontal: 16,
+    paddingTop: 16,
+  },
+  userContainer:{
+    marginBottom: 16,
+    backgroundColor: '#FFFFFF', 
+    borderRadius: 8, 
+    padding: 16,
+    elevation: 2, 
+    
+  },
+  postContainer:{
+    marginBottom: 16,
+    backgroundColor: '#FFFFFF', 
+    borderRadius: 8, 
+    padding: 16,
+    elevation: 2, 
+  },
+
+  btn:{
+    backgroundColor:'green',
+    padding: 10,
+    borderRadius:6,
+    marginTop:20,
+    alignItems: 'center',
+    justifyContent: 'center'
+    
+  },
+  
+  btnEliminar:{
+    backgroundColor:'green',
+    padding: 10,
+    borderRadius:6,
+    marginBottom: 10,
+    alignItems: 'center',
+    justifyContent: 'center'
+    
+  },
+
+email:{
+  fontWeight:'bold',
+  paddingBottom: '50'
+
+}
 })

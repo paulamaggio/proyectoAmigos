@@ -75,7 +75,7 @@ export default class CamaraPost extends Component {
             this.state.permisos && this.state.mostrarCamara === false?
             <>
                 <Image
-                    style={styles.img}
+                    style={styles.camara}
                     source={{uri: this.state.urlTemp}}
                     resizeMode={'contain'}
                 />
@@ -108,13 +108,13 @@ export default class CamaraPost extends Component {
 
 const styles = StyleSheet.create({
     container:{ 
-        height: 300
+        height: 500,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     camara: {
         height : 300,
         width: 700
     },
-    img: {
-        height : 300,
-    }
+    
 })

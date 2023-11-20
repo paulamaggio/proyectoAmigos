@@ -33,7 +33,7 @@ export default class FromLogin extends Component {
     render() {
       return (
         <View>
-          <Text> Login </Text>
+          <Text style={styles.text}> Login </Text>
             <TextInput
                     style={styles.input}
                     placeholder='Ingresa tu email'
@@ -70,11 +70,11 @@ export default class FromLogin extends Component {
 const styles = StyleSheet.create({
     input: {
         borderWidth: 3,
-        borderColor: 'purple',
+        borderColor: 'green',
         marginBottom: 20
     },
     btn:{ 
-        backgroundColor: 'purple',
+        backgroundColor: 'green',
         padding: 16
     },
     textBtn:{
@@ -82,5 +82,8 @@ const styles = StyleSheet.create({
     },
     textLink:{
         color:'blue'
+    },
+    text: {
+      fontWeight:'bold',
     }
 })

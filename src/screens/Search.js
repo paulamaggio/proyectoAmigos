@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, FlatList, TouchableOpacity  } from 'react-native'
+import { Text, View, FlatList, TouchableOpacity, StyleSheet  } from 'react-native'
 import { auth, db } from '../firebase/config'
 
 import FormSearch from '../components/FormSearch'
@@ -55,7 +55,7 @@ export default class Search extends Component {
     return (
       <View>
         <ScrollView>
-        <FormSearch filterUsuarios={(value) => this.filterUsuarios(value)} actualizarInput={(value) => this.actualizarInput(value)}/>
+        <FormSearch style={styles.form} filterUsuarios={(value) => this.filterUsuarios(value)} actualizarInput={(value) => this.actualizarInput(value)}/>
         {
           this.state.value != ''? (
             this.state.usuarios.length != 0?
@@ -63,7 +63,7 @@ export default class Search extends Component {
               data={this.state.usuarios}
               keyExtractor={(item)=> item.id.toString()}
               renderItem={({item})=>
-                <View>
+                <View style={StyleSheet.busqueda}>
                   <TouchableOpacity onPress={() => this.irPerfil(item.data.owner)}>
                     <Text> {item.data.name}</Text>
                     <Text>{item.data.owner}</Text>
@@ -74,7 +74,7 @@ export default class Search extends Component {
               :
               <Text>El usuario buscado no existe.</Text>
           ) : (
-            <Text>Busca un usuario</Text>
+            <Text style={styles.text}>Busca un usuario</Text>
           )
         }
       </ScrollView>
@@ -82,3 +82,19 @@ export default class Search extends Component {
     )
   }
 }
+
+const styles = StyleSheet.create({
+  text: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginLeft: 550,
+    fontWeight:'bold',
+
+
+},
+ form: {
+   margintop: '100%'
+}
+}
+)
+

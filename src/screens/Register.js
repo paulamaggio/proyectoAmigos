@@ -47,7 +47,7 @@ export default class FormRegister extends Component {
   render(){
     return (
       <View>
-        <Text> FORMULARIO </Text>
+        <Text style={styles.text}> Formulario de Registracion </Text>
             
             {/* VALIDACIONES */}
             {
@@ -131,11 +131,11 @@ export default class FormRegister extends Component {
 const styles = StyleSheet.create({
     input: {
         borderWidth: 3,
-        borderColor: 'purple',
+        borderColor: 'green',
         marginBottom: 20
     },
     btn:{ 
-        backgroundColor: 'purple',
+        backgroundColor: 'green',
         padding: 16
     },
     textBtn:{
@@ -143,5 +143,8 @@ const styles = StyleSheet.create({
     },
     textLink:{
         color:'blue'
-    }
+    },
+    text: {
+        fontWeight:'bold',
+      }
 })

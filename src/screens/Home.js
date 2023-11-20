@@ -30,8 +30,9 @@ export default class Home extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text> Home </Text>
+        <Text style={styles.text}> Home </Text>
         <FlatList
+        style= {styles.flatList}
         data= {this.state.posts}
         keyExtractor= {(item) => item.id.toString()}
         renderItem= {({item}) => <Post navigation={this.props.navigation} data={item.data} id={item.id} />}
@@ -41,8 +42,25 @@ export default class Home extends Component {
   }
 }
 
+// const styles = StyleSheet.create({
+ //  container:{
+   //    flex:1
+ //  },
+// })
+
 const styles = StyleSheet.create({
-  container:{
-      flex:1
+  container: {
+    flex:1, 
+    backgroundColor: '#DCDCDC',
+    paddingHorizontal: 16,
+    paddingTop: 16,
+
   },
+  flatList: {
+    marginTop: 16,
+  },
+  text: {
+    fontWeight:'bold',
+    fontSize: '200%'
+  }
 })

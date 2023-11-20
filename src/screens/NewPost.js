@@ -49,8 +49,8 @@ actualizarFotoUrl(url){
 
   render() {
     return (
-      <View>
-        <Text> NewPost </Text>
+      <View style={styles.container}>
+        <Text style={styles.textPost}> Publica una foto </Text>
         {
           this.state.paso1? 
           <CamaraPost 
@@ -75,16 +75,28 @@ actualizarFotoUrl(url){
 }
 
 const styles = StyleSheet.create({
-  input: {
-      borderWidth: 3,
-      borderColor: 'purple',
-      marginBottom: 20
-  },
+
   btn:{ 
-      backgroundColor: 'purple',
-      padding: 16
+      backgroundColor: 'green',
+      padding: 16,
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: '60%',
   },
   textBtn:{
-      color: 'white'
+      color: 'black',
+      justifyContent: 'center',
+      alignItems: 'center',
+
+  },
+  textPost: {
+    alignItems: 'center',
+    fontWeight:'bold',
+    justifyContent: 'center',
+    color: "green"
+  },
+  container: {
+    justifyContent: 'center',
+      alignItems: 'center',
   }
 })

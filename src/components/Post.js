@@ -101,7 +101,9 @@ export default class Post extends Component {
 
 const styles = StyleSheet.create({
     container:{
-        flex:1
+        flex:1,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     img:{
         width:100,
@@ -109,5 +111,7 @@ const styles = StyleSheet.create({
     },
     comment: {
         marginBottom : 16
+        
     }
 })
+
