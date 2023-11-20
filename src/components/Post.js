@@ -43,10 +43,18 @@ export default class Post extends Component {
         this.props.navigation.navigate('Comments', {id: this.props.id})
     }
 
+
+    irPerfil(owner){
+        owner == auth.currentUser.email ?
+          this.props.navigation.navigate('Profile')
+          :
+          this.props.navigation.navigate('PerfilAmigo', { email: owner })
+    }
+    
   render() {
     return (
       <View style = {styles.container}>
-        <TouchableOpacity onPress={()=> this.props.navigation.navigate('PerfilAmigo', {email: this.props.data.owner})}>
+        <TouchableOpacity onPress={()=> this.irPerfil(this.props.data.owner)}>
             <Text>{this.props.data.owner}</Text>
         </TouchableOpacity>
 

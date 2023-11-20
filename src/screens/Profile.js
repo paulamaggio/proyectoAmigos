@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Text, View, TouchableOpacity, StyleSheet, FlatList, ScrollView, Image } from 'react-native'
 import { auth, db } from '../firebase/config'
+import { getAuth, deleteUser } from "firebase/auth";
+
 import Post from '../components/Post'
 
 
@@ -57,6 +59,8 @@ export default class Profile extends Component {
   }
 
   eliminarCuenta(email){
+    const user = auth.currentUser;
+
     db
     .collection('users')
     .where('owner', '==', email)
@@ -72,10 +76,11 @@ export default class Profile extends Component {
           .collection('users')
           .doc(this.state.idUsuario)
           .delete()
-          .then((resp)=>console.log(resp))
+          .then(user.delete()
+                .then(this.props.navigation.navigate('Register'))
+                .catch((err)=>console.log(err)))
           .catch((err)=>console.log(err))
 
-          this.props.navigation.navigate('Register')
         }
       })
     })
